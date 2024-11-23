@@ -1,0 +1,14 @@
+.fundo {
+    background-color: #121212;
+    color: #fff;
+}
+
+/* Uma vez que aplica na base.html, ele aplica em todos os arquivos que extendem ele */
+
+.bg-nav {
+    background-color: #191919;
+}
+
+.bg-hr {
+    background-color: grey;
+}
