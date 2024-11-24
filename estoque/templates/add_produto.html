@@ -1,0 +1,44 @@
+
+
+<!-- enctype="" é necessário para enviar arquivos para o backend -->
+<!-- O formulário é enviado para a URL 'add_produto' -->
+<!-- O formulário é protegido contra CSRF -->
+<!-- O formulário possui campos para o nome do produto, a categoria do produto, o estoque inicial, o preço de compra e o preço de venda -->
+<!-- O campo de categoria é um select que exibe todas as categorias cadastradas no banco de dados -->
+<!-- O campo de imagens permite o envio de várias imagens -->
+<!-- O botão de enviar envia o formulário -->
+
+<form action="{% url 'add_produto' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="">Imagens</label>
+    <input type="file" name="imagens" multiple>
+    <br>
+    <br>
+    <label for="">Nome</label>
+    <input type="text" name="nome">
+    <br>
+    <br>
+    <label for="">Selecione a categoria do produto</label>
+    <select name="categoria" id="">
+      {% for categoria in categorias %}
+        <option value="{{ categoria.id }}">{{ categoria.titulo }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <br>
+    <label for="">Estoque inicial:</label>
+    <input type="number" name="quantidade">
+    <br>
+    <br>
+    <label for="">Preço de compra:</label>
+    <input type="number" name="preco_compra">
+    <br>
+    <br>
+    <label for="">Preço de venda:</label>
+    <input type="number" name="preco_venda">
+    <br>
+    <br>
+    <input type="submit" value="Enviar">
+</form>
+</div>

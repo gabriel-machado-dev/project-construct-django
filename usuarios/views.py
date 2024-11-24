@@ -4,6 +4,9 @@ from rolepermissions.decorators import has_permission_decorator
 from .models import Users
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+
 # Create your views here.
 
 """
@@ -19,16 +22,26 @@ def cadastrar_vendedor(request):
         vendedores = Users.objects.filter(cargo='V')
         return render(request, 'cadastrar_vendedor.html', {'vendedores': vendedores})
     if request.method == 'POST':
+        nome = request.POST.get('nome')
+        sobrenome = request.POST.get('sobrenome')
         email = request.POST.get('email')
         senha = request.POST.get('senha')
+
+        try:
+            validate_email(email)
+        except ValidationError:
+            messages.add_message(request, messages.ERROR, 'Email inválido')
+            return redirect(reverse('cadastrar_vendedor'))
+            
 
         user = Users.objects.filter(email=email)
 
         if user.exists():
             # TODO: Utilizar messages do django
-            return HttpResponse('Email já cadastrado')
+            messages.add_message(request, messages.ERROR, 'Email já cadastrado')
+            return redirect(reverse('cadastrar_vendedor'))
         
-        user = Users.objects.create_user(username=email, email=email, password=senha, cargo='V')
+        user = Users.objects.create_user(username=email, email=email, password=senha, first_name=nome, last_name=sobrenome, cargo='V')
 
         # TODO: Redirecionar com uma mensagem
         return HttpResponse('Vendedor cadastrado com sucesso')

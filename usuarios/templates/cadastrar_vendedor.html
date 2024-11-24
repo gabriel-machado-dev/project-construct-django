@@ -11,6 +11,10 @@
     <h1>Cadastrar Vendedor</h1>
     <form method="POST" action="{% url 'cadastrar_vendedor' %}">
       {% csrf_token %}
+      <label for="" style="margin-bottom: 10px;">Nome</label>
+      <input type="text" name="nome" class="form-control" placeholder="Digite seu Nome">
+      <label for="" style="margin-bottom: 10px;">Sobrenome</label>
+      <input type="text" name="sobrenome" class="form-control" placeholder="Digite seu Sobrenome">
       <label for="" style="margin-bottom: 10px;">E-mail</label>
       <input type="email" name="email" class="form-control" placeholder="Digite seu E-mail">
       <label for="">Senha</label>
