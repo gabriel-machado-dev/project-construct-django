@@ -5,15 +5,15 @@ from rolepermissions.roles import assign_role
 
 """
 
-O sinal post_save é emitido sempre que um modelo é salvo. Neste caso, o sinal post_save é emitido sempre que um usuário é salvo.
+O SINAL POST_SAVE É EMITIDO SEMPRE QUE UM MODELO É SALVO. NESTE CASO, O SINAL POST_SAVE É EMITIDO SEMPRE QUE UM USUÁRIO É SALVO.
 
-O decorador @receiver é um receptor de sinal. Ele recebe um sinal e executa uma função.
+O DECORADOR @RECEIVER É UM RECEPTOR DE SINAL. ELE RECEBE UM SINAL E EXECUTA UMA FUNÇÃO.
 
-Neste caso, o receptor de sinal é o sinal post_save e a função é a função assign_role.
+NESTE CASO, O RECEPTOR DE SINAL É O SINAL POST_SAVE E A FUNÇÃO É A FUNÇÃO ASSIGN_ROLE.
 
-A função assign_role é responsável por atribuir uma permissão ao usuário.
+A FUNÇÃO ASSIGN_ROLE É RESPONSÁVEL POR ATRIBUIR UMA PERMISSÃO AO USUÁRIO.
 
-Sempre que cria um signals, tem que importar no app.py
+SEMPRE QUE CRIA UM SIGNALS, TEM QUE IMPORTAR NO APP.PY
 """
 
 @receiver(post_save, sender=Users)

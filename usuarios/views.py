@@ -10,10 +10,13 @@ from django.core.exceptions import ValidationError
 # Create your views here.
 
 """
-has_permission_decorator() é um decorador que verifica se o usuário tem permissão para acessar a view.
-Ex: apenas o gerente pode cadastrar vendedores
+HAS_PERMISSION_DECORATOR() É UM DECORADOR QUE VERIFICA SE O USUÁRIO TEM PERMISSÃO PARA ACESSAR A VIEW.
+EX: APENAS O GERENTE PODE CADASTRAR VENDEDORES
 
-em roles.py, foi criado a permissão 'cadastrar_vendedor' e foi atribuido a classe Gerente
+EM ROLES.PY, FOI CRIADO A PERMISSÃO 'CADASTRAR_VENDEDOR' E FOI ATRIBUIDO A CLASSE GERENTE
+
+ADCIONE O DECORATOR PARA QUE APENAS QUEM TENHA PERMISSÃO
+ACESSE AQUELA PÁGINA
 """
 
 @has_permission_decorator(permission_name='cadastrar_vendedor') # 

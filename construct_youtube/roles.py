@@ -1,10 +1,10 @@
 from rolepermissions.roles import AbstractUserRole
 
 """
-Atraves dessa classe, é possível criar as permissões de cada usuário
-Grupos de usuários, irá ter um vendendor, um gerente e um administrador...
+ATRAVES DESSA CLASSE, É POSSÍVEL CRIAR AS PERMISSÕES DE CADA USUÁRIO
+GRUPOS DE USUÁRIOS, IRÁ TER UM VENDEDOR, UM GERENTE E UM ADMINISTRADOR...
 
-available_permissions é um dicionário que contém as permissões que cada usuário terá
+AVAILABLE_PERMISSIONS É UM DICIONÁRIO QUE CONTÉM AS PERMISSÕES QUE CADA USUÁRIO TERÁ
 """
 
 

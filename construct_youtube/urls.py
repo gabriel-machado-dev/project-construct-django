@@ -21,8 +21,15 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # REDIRECIONA PARA O APP, APARTIR DELA, CRIA AS URLS DO APP
     path('auth/', include('usuarios.urls')),
+    # REDERICIONA PARA O APP, APARTIR DELA, CRIA AS URLS DO APP
     path('estoque/', include('estoque.urls')),
 ]
 
-urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# SERVE PARA SERVIR ARQUIVOS ESTÁTICOS E MÍDIA
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

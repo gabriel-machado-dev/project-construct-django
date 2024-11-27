@@ -6,28 +6,42 @@ from .forms import UserChangeForm, UserCreationForm
 # Register your models here.
 
 """
-Usamos o decorador @admin.register para registrar o modelo de usuário personalizado.
+QUERO QUE OS FORMS QUE PERSONALIZAMOS EM FORMS APAREÇAM NO ADMIN
+COM OS CAMPOS ADICIONADOS
 
-Substituímos o UserAdmin padrão pelo UserAdmin personalizado.
+PARA REGISTRAR QUALQUER MODEL NO ADMIN E ADICIONAR ALGUMAS
+CONFIGURAÇÕES.
 
-Adicionamos o campo de escolha de cargo ao UserAdmin personalizado.
+@ADMIN.REGISTER(USERS)
 
-form = UserChangeForm: Substituímos o formulário de alteração de usuário padrão pelo formulário de alteração de usuário personalizado.
+MANTER O ADMIN COMO ERA ANTES MAS COM ADIÇÃO DE ALGUNS CAMPOS
+ENTÃO PRECISO HERDAR DE ADMIN_AUTH_DJANGO E A CLASSE USERADMIN
+PARA CADASTRAR UM USUÁRIO, ETC.
 
-add_form = UserCreationForm: Substituímos o formulário de criação de usuário padrão pelo formulário de criação de usuário personalizado.
+ADICIONANDO CAMPO COM FIELDSETS
 
-model = Users: Substituímos o modelo de usuário padrão pelo modelo de usuário personalizado.
+USAMOS O DECORADOR @ADMIN.REGISTER PARA REGISTRAR O MODELO DE USUÁRIO PERSONALIZADO.
 
-fieldsets = auth_admin_django.UserAdmin.fieldsets + (('Cargo', {'fields': ('cargo',)}),): Adicionamos o campo de escolha de cargo ao UserAdmin personalizado.
+SUBSTITUÍMOS O USERADMIN PADRÃO PELO USERADMIN PERSONALIZADO.
 
-E adicionar o seguinte código no settings.py:
+ADICIONAMOS O CAMPO DE ESCOLHA DE CARGO AO USERADMIN PERSONALIZADO.
 
-AUTH_USER_MODEL = 'usuarios.Users'
+FORM = USERCHANGEFORM: SUBSTITUÍMOS O FORMULÁRIO DE ALTERAÇÃO DE USUÁRIO PADRÃO PELO FORMULÁRIO DE ALTERAÇÃO DE USUÁRIO PERSONALIZADO.
 
-Para adicionar ao banco de dados, execute o seguinte comando:
+ADD_FORM = USERCREATIONFORM: SUBSTITUÍMOS O FORMULÁRIO DE CRIAÇÃO DE USUÁRIO PADRÃO PELO FORMULÁRIO DE CRIAÇÃO DE USUÁRIO PERSONALIZADO.
 
-python manage.py makemigrations
-python manage.py migrate
+MODEL = USERS: SUBSTITUÍMOS O MODELO DE USUÁRIO PADRÃO PELO MODELO DE USUÁRIO PERSONALIZADO.
+
+FIELDSETS = AUTH_ADMIN_DJANGO.USERADMIN.FIELDSETS + (('CARGO', {'FIELDS': ('CARGO',)}),): ADICIONAMOS O CAMPO DE ESCOLHA DE CARGO AO USERADMIN PERSONALIZADO.
+
+E ADICIONAR O SEGUINTE CÓDIGO NO SETTINGS.PY:
+
+AUTH_USER_MODEL = 'USUARIOS.USERS'
+
+PARA ADICIONAR AO BANCO DE DADOS, EXECUTE O SEGUINTE COMANDO:
+
+PYTHON MANAGE.PY MAKEMIGRATIONS
+PYTHON MANAGE.PY MIGRATE
 """
 
 @admin.register(Users)

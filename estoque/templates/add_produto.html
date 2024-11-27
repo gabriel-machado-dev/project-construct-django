@@ -7,16 +7,29 @@
 <!-- O campo de categoria é um select que exibe todas as categorias cadastradas no banco de dados -->
 <!-- O campo de imagens permite o envio de várias imagens -->
 <!-- O botão de enviar envia o formulário -->
+{% extends 'base.html' %}
+{% load filters %}
+{% block 'body' %}
 
+<div class="container">
+  {% if messages %}
+      {% for message in messages %}
+        <div class="alert {{message.tags}}">
+          {{message}}
+        </div>
+      {% endfor %}
+    {% endif %}
 <form action="{% url 'add_produto' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-
+    <br>
+    <h1>Adicionar Produto</h1>
+    <br>
     <label for="">Imagens</label>
-    <input type="file" name="imagens" multiple>
+    <input class="form-control" type="file" name="imagens" multiple>
     <br>
     <br>
     <label for="">Nome</label>
-    <input type="text" name="nome">
+    <input class="form-control" type="text" name="nome">
     <br>
     <br>
     <label for="">Selecione a categoria do produto</label>
@@ -28,17 +41,66 @@
     <br>
     <br>
     <label for="">Estoque inicial:</label>
-    <input type="number" name="quantidade">
+    <input class="form-control" type="number" name="quantidade">
     <br>
     <br>
     <label for="">Preço de compra:</label>
-    <input type="number" name="preco_compra">
+    <input class="form-control" type="number" name="preco_compra">
     <br>
     <br>
     <label for="">Preço de venda:</label>
-    <input type="number" name="preco_venda">
+    <input class="form-control" type="number" name="preco_venda">
     <br>
     <br>
-    <input type="submit" value="Enviar">
+    <input class="btn btn-success" type="submit" value="Enviar">
+    <hr style="background-color: gray;">
 </form>
+
+    <form action="{% url 'add_produto' %}" method="GET">
+      <div class="row">
+        <div class="col-md">
+          <input class="form-control" type="text" name="nome" placeholder="Nome">
+        </div>
+        <div class="col-md">
+          <select class="form-control" name="categoria" id="">
+            <option value="">Todas as categorias</option>
+            {% for categoria in categorias %}
+              <option value="{{ categoria.id }}">{{ categoria.titulo }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md">
+          <input class="form-control" type="number" name="preco_min" placeholder="Preço mínimo">
+        </div>
+        <div class="col-md">
+          <input class="form-control" type="number" name="preco_max" placeholder="Preço máximo">
+        </div>
+        <div class="col-md">
+          <input class="btn btn-primary" type="submit" value="Filtrar">
+        </div>
+      </div>
+    </form>
+
+    <div class="listar-produtos">
+      <div class="row">
+      {% for produto in produtos %}
+      <div class="col-md">
+        <div class="card" style="width: 18rem; background-color: #0f0f0f;">
+          {% if produto|get_first_image %}
+          <img class="card-img-top" src="{{produto | get_first_image}}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{produto.nome}}</h5>
+            <span class="badge badge-info">{{produto.categoria}}</span>
+            <br>
+            <br>
+            <a href="{% url 'produto' produto.slug %}" class="btn btn-primary">Acessar</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+    </div>
 </div>
+{% endblock %}

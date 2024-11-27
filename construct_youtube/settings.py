@@ -68,6 +68,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+        'libraries': {
+          'filters': 'estoque.templatetags.filters',
+        }
         },
     },
 ]
@@ -144,6 +147,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+"""
+COMO VAMOS USAR NOSSO MODEL PARA A PAGINA DE ADMIN E NAO
+A DO DJANGO PRECIMOS COLOCAR O SEGUINTE COMANDO:
+
+NOME DO APP.CLASSE
+"""
 
 AUTH_USER_MODEL = 'usuarios.Users'
 
